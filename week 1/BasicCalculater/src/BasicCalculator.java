@@ -33,16 +33,20 @@ public class BasicCalculator {
         switch (operation){
             case "1":
                 answer = firstNum + secondNum;
+                operation = "+";
                 break;
             case "2":
                 answer = firstNum - secondNum;
+                operation = "-";
                 break;
             case "3":
                 answer = firstNum * secondNum;
+                operation = "*";
                 break;
             case "4":
                 if (secondNum != 0) {
                     answer = firstNum / secondNum;
+                    operation = "/";
                 } else
                     System.out.println("Can't divide by zero");
                 break;
@@ -50,6 +54,7 @@ public class BasicCalculator {
                 System.out.println("Not Available");
                 return ;
         }
+        System.out.println("Your equation: " + firstNum + " " + operation + " " + secondNum);
         System.out.println("The answer is:" + answer );
     }
 }
