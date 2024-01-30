@@ -56,6 +56,5 @@ public class MathApplication {
         int maxNum = 1;
         double randomNumber = minNum + (maxNum - minNum) * randomGen.nextDouble();
         System.out.println("A random number between " + minNum + " and " + maxNum + " is " + randomNumber);
-
     }
 }
