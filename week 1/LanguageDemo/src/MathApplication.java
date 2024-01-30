@@ -52,9 +52,10 @@ public class MathApplication {
 
         System.out.println("Answer 7");
         Random randomGen = new Random();
-        int range = 2;
-        int randomNumber = randomGen.nextInt(range);
-        System.out.println("A random number between 0 and " + range + " is " + randomNumber);
+        int minNum = 0;
+        int maxNum = 1;
+        double randomNumber = minNum + (maxNum - minNum) * randomGen.nextDouble();
+        System.out.println("A random number between " + minNum + " and " + maxNum + " is " + randomNumber);
 
     }
 }
