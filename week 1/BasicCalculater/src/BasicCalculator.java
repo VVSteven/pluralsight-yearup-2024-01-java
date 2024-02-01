@@ -27,6 +27,7 @@ public class BasicCalculator {
 
         System.out.print("Enter the number corresponding to the desired operation: ");
         String operation = scanner.nextLine();
+        scanner.close();
 
         double answer = 0.0;
 

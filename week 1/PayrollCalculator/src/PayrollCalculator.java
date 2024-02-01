@@ -19,6 +19,7 @@ public class PayrollCalculator {
         System.out.print("Enter Your Regular Hours: ");
         double regularHours = Double.parseDouble(scanner.nextLine());
         System.out.println("============================");
+        scanner.close();
 
         double overtimePay = 0.0;
 
