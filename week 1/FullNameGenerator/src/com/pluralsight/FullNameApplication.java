@@ -21,6 +21,7 @@ public class FullNameApplication {
         System.out.print("Enter Your Suffix: ");
         String suffix = scanner.nextLine();
         System.out.println("============================");
+        scanner.close();
 //    FRIEND INSPIRED
         String fullName = firstName;
 
