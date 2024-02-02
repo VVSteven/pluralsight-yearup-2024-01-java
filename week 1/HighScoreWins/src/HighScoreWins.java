@@ -8,9 +8,9 @@ public class HighScoreWins {
         String teamScoreInfo = scanner.nextLine();
         scanner.close();
 
-        String[] teamScoreInfo = fullName.split(" ", -1);
+        String[] info = teamScoreInfo.split("\\|", -1);
 
-
-
+        for (info name : info)
+        System.out.println(info);
     }
 }
