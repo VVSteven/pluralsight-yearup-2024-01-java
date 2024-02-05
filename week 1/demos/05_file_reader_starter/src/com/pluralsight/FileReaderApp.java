@@ -11,7 +11,6 @@ public class FileReaderApp
         String fileName = "files/hansel_and_gretel.txt";
         // create a file object -> this will allow us to open the file
         File file = new File(fileName);
-
         // a Scanner opens the file and loads it into a stream
         try(Scanner fileScanner = new Scanner(file))
         {
