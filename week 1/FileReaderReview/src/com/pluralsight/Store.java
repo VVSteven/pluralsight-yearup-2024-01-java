@@ -1,7 +1,9 @@
 package com.pluralsight;
 
-public class Store {
-    public static void main(String[] var0){
+import java.util.ArrayList;
 
+public class Store {
+    public static void main(String[] args){
+        ArrayList<Product> myProducts = loadProducts();
     }
 }
