@@ -31,7 +31,12 @@ public class CarServices {
                     String make = resultSet.getString("make");
                     String model = resultSet.getString("model");
                     int year = resultSet.getInt("year");
-                    System.out.println("Car: " + year + " " + make + " " + model);
+                    String type = resultSet.getString("type");
+                    String color = resultSet.getString("color");
+                    int miles = resultSet.getInt("miles");
+                    int price = resultSet.getInt("price");
+
+                    System.out.println("Car: " + year + " " + make + " " + model + " " + type + " " + color + " "+ miles + " " + price);
                 }
             }
         } catch (SQLException e) {

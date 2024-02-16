@@ -23,12 +23,11 @@ public class CarDealershipApplication {
 
 
     public void run() {
-
-        scanner = new Scanner(System.in);
         customerName = ui.getCustomerName();
 
         while (true) {
             String answer = ui.answer(customerName);
+
             if (answer.equalsIgnoreCase("No")) {
                 System.out.println(customerName + " why are you here.");
                 break;
@@ -38,36 +37,18 @@ public class CarDealershipApplication {
     }
 
     public void showDealerships() {
-        System.out.println("Dealerships:");
-        System.out.println("========================");
-        System.out.println("(1) D & B Used Cars 111 Old Benbrook Rd, Dallas, TX, 45137");
-        System.out.println("(2) Slick Auto Deals 123 Main, SLC, UT, 84111");
-        System.out.print("Select A Dealership: ");
-        dealershipID = scanner.nextInt();
+        dealershipID = ui.displayDealership();
         selectedDealership = switch (dealershipID) {
             case 1 -> "D & B Used Cars";
             case 2 -> "Slick Auto Deals";
             default -> "Invalid Dealership";
         };
-        System.out.println();
-        System.out.println(customerName + " you are now being sent to the " + selectedDealership + " Dealership");
-        System.out.println();
+        ui.sendToDealership(customerName, selectedDealership);
         dealership();
     }
 
     public void dealership() {
-        System.out.println("Welcome to " + selectedDealership);
-        System.out.println("========================");
-        System.out.println();
-        System.out.println("How do you want to search for your new car?");
-        System.out.println("(1) Show All");
-        System.out.println("(2) Price Range");
-        System.out.println("(3) Make/Model");
-        System.out.println("(4) Year");
-        System.out.println("(5) Color");
-        System.out.println("(6) Type/Class");
-        System.out.print("");
-        searchFilter = scanner.nextInt();
+        int searchFilter = ui.welcomeToDealership(selectedDealership);
         selectedFilter = switch (searchFilter) {
             case 1 -> "Show All";
             case 2 -> "Price Range";
@@ -77,12 +58,11 @@ public class CarDealershipApplication {
             case 6 -> "Type/Class";
             default -> "Invalid Filter";
         };
-        System.out.println("Cars by sorted by " + selectedFilter);
+        ui.displayFilter(selectedFilter);
         showCars();
     }
 
     public void showCars() {
-        System.out.println();
         carServices.printCarInformation();
     }
 }
