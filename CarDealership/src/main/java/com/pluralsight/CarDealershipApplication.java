@@ -2,27 +2,35 @@ package com.pluralsight;
 
 import java.util.Scanner;
 
+import com.pluralsight.services.*;
+import com.pluralsight.views.UserInterface;
+
+
 public class CarDealershipApplication {
     private Scanner scanner;
-    private String userName;
+    UserInterface ui = new UserInterface();
+
+    private String customerName;
     private String selectedDealership;
     private int dealershipID;
+    private int searchFilter;
+    private String selectedFilter;
+    CarServices carServices;
+
+    public CarDealershipApplication(CarServices carServices) {
+        this.carServices = carServices;
+    }
+
 
     public void run() {
 
         scanner = new Scanner(System.in);
-
-        System.out.println("Hello");
+        customerName = ui.getCustomerName();
 
         while (true) {
-            System.out.print("What is your name? ");
-            userName = scanner.nextLine().strip();
-
-            System.out.println(userName + " Are you looking for a car?");
-            System.out.print("Yes/No: ");
-            String customer = scanner.nextLine().strip();
-            if (customer.equalsIgnoreCase("No")) {
-                System.out.println(userName + " why are you here.");
+            String answer = ui.answer(customerName);
+            if (answer.equalsIgnoreCase("No")) {
+                System.out.println(customerName + " why are you here.");
                 break;
             }
             showDealerships();
@@ -42,15 +50,39 @@ public class CarDealershipApplication {
             default -> "Invalid Dealership";
         };
         System.out.println();
-        System.out.println( userName + " you are now being sent to the " + selectedDealership + " Dealership");
+        System.out.println(customerName + " you are now being sent to the " + selectedDealership + " Dealership");
         System.out.println();
-       dealership();
+        dealership();
     }
-    public void dealership(){
+
+    public void dealership() {
         System.out.println("Welcome to " + selectedDealership);
         System.out.println("========================");
         System.out.println();
+        System.out.println("How do you want to search for your new car?");
+        System.out.println("(1) Show All");
+        System.out.println("(2) Price Range");
+        System.out.println("(3) Make/Model");
+        System.out.println("(4) Year");
+        System.out.println("(5) Color");
+        System.out.println("(6) Type/Class");
+        System.out.print("");
+        searchFilter = scanner.nextInt();
+        selectedFilter = switch (searchFilter) {
+            case 1 -> "Show All";
+            case 2 -> "Price Range";
+            case 3 -> "Make/Model";
+            case 4 -> "Year";
+            case 5 -> "Color";
+            case 6 -> "Type/Class";
+            default -> "Invalid Filter";
+        };
+        System.out.println("Cars by sorted by " + selectedFilter);
+        showCars();
+    }
 
-
+    public void showCars() {
+        System.out.println();
+        carServices.printCarInformation();
     }
 }
