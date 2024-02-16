@@ -22,13 +22,13 @@ public class CarServices {
         }};
     }
 
-    public void printCarInformation(int dealerId) {
+    public void displayCarInformation(int dealerId) {
         try (Connection connection = dataSource.getConnection()) {
             String query = "SELECT * FROM vehicles WHERE dealer_id=?";
             try (PreparedStatement statement = connection.prepareStatement(query))
             {
                 statement.setInt(1,dealerId);
-                 ResultSet resultSet = statement.executeQuery();
+                ResultSet resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     String make = resultSet.getString("make");
                     String model = resultSet.getString("model");
@@ -38,12 +38,40 @@ public class CarServices {
                     int miles = resultSet.getInt("miles");
                     int price = resultSet.getInt("price");
 
-                    System.out.println("Car: " + year + " " + make + " " + model + " " + type + " " + color + " "+ miles + " " + price);
+                    System.out.println(year + " " + make + " " + model + " " + type + " " + color + " "+ miles + " " + price);
 
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    public String getRangedCars(int dealerId, double min , double max) {
+        try (Connection connection = dataSource.getConnection()) {
+            String query = "SELECT * FROM vehicles WHERE dealer_id=? AND price >= ? AND price <= ? ORDER BY price";
+            try (PreparedStatement statement = connection.prepareStatement(query))
+            {
+                statement.setInt(1,dealerId);
+                statement.setDouble(2,min);
+                statement.setDouble(3,max);
+                ResultSet resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    String make = resultSet.getString("make");
+                    String model = resultSet.getString("model");
+                    int year = resultSet.getInt("year");
+                    String type = resultSet.getString("type");
+                    String color = resultSet.getString("color");
+                    int miles = resultSet.getInt("miles");
+                    int price = resultSet.getInt("price");
+
+                    System.out.println(year + " " + make + " " + model + " " + type + " " + color + " "+ miles + " " + price);
+
+
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

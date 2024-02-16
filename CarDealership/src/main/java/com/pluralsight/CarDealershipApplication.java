@@ -48,21 +48,72 @@ public class CarDealershipApplication {
 
     public void startScam() {
         int searchFilter = ui.welcomeToDealership(selectedDealership);
-        selectedFilter = switch (searchFilter) {
-            case 1 -> "Show All";
-            case 2 -> "Price Range";
-            case 3 -> "Make/Model";
-            case 4 -> "Year";
-            case 5 -> "Color";
-            case 6 -> "Type/Class";
-            default -> "Invalid Filter";
-        };
-        ui.displayFilter(selectedFilter);
-        showCars();
+        switch (searchFilter) {
+            case 1:
+                selectedFilter = "Show All";
+                showAllCars();
+                break;
+            case 2:
+                selectedFilter = "Price";
+                showCarsByRange();
+                break;
+            case 3:
+                selectedFilter = "Make/Model";
+                showFilterCars();
+
+                break;
+            case 4:
+                selectedFilter = "Year";
+                showFilterCars();
+
+                break;
+            case 5:
+                selectedFilter = "Color";
+                showFilterCars();
+
+                break;
+            case 6:
+                selectedFilter = "Type/Class";
+                showFilterCars();
+                break;
+            case 7:
+                addCar();
+                break;
+            case 8:
+                removeCar();
+                break;
+            case 9:
+                exitDealership();
+                break;
+            default:
+                selectedFilter = "Invalid Filter";
+                break;
+        }
     }
 
-    public void showCars() {
-        carServices.printCarInformation(dealershipID);
+
+    public void showAllCars() {
+        carServices.displayCarInformation(dealershipID);
         ui.endScam();
+    }
+
+    public void showCarsByRange() {
+        double minPrice = ui.getPriceRangeMin();
+        double maxPrice = ui.getPriceRangeMax();
+        ui.displayCarsByRange(dealershipID,minPrice,maxPrice);
+        ui.endScam();
+    }
+    public void showFilterCars(){
+
+    }
+
+    public void addCar() {
+
+    }
+    public void exitDealership() {
+
+    }
+    public void removeCar(){
+
     }
 }
