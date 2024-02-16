@@ -21,7 +21,6 @@ public class CarDealershipApplication {
         this.carServices = carServices;
     }
 
-
     public void run() {
         customerName = ui.getCustomerName();
 
@@ -44,10 +43,10 @@ public class CarDealershipApplication {
             default -> "Invalid Dealership";
         };
         ui.sendToDealership(customerName, selectedDealership);
-        dealership();
+        startScam();
     }
 
-    public void dealership() {
+    public void startScam() {
         int searchFilter = ui.welcomeToDealership(selectedDealership);
         selectedFilter = switch (searchFilter) {
             case 1 -> "Show All";
@@ -63,6 +62,7 @@ public class CarDealershipApplication {
     }
 
     public void showCars() {
-        carServices.printCarInformation();
+        carServices.printCarInformation(dealershipID);
+        ui.endScam();
     }
 }

@@ -22,11 +22,13 @@ public class CarServices {
         }};
     }
 
-    public void printCarInformation() {
+    public void printCarInformation(int dealerId) {
         try (Connection connection = dataSource.getConnection()) {
-            String query = "SELECT * FROM vehicles";
-            try (PreparedStatement statement = connection.prepareStatement(query);
-                 ResultSet resultSet = statement.executeQuery()) {
+            String query = "SELECT * FROM vehicles WHERE dealer_id=?";
+            try (PreparedStatement statement = connection.prepareStatement(query))
+            {
+                statement.setInt(1,dealerId);
+                 ResultSet resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     String make = resultSet.getString("make");
                     String model = resultSet.getString("model");
@@ -37,6 +39,7 @@ public class CarServices {
                     int price = resultSet.getInt("price");
 
                     System.out.println("Car: " + year + " " + make + " " + model + " " + type + " " + color + " "+ miles + " " + price);
+
                 }
             }
         } catch (SQLException e) {

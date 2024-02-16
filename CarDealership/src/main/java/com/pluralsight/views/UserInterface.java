@@ -41,11 +41,19 @@ public class UserInterface {
         System.out.println("(4) Year");
         System.out.println("(5) Color");
         System.out.println("(6) Type/Class");
+        System.out.println("(7) Add a Car");
+        System.out.println("(8) Exit Dealership");
         System.out.print("");
          return scanner.nextInt();
 
     }
     public void displayFilter(String selectedFilter){
         System.out.println("Cars by sorted by " + selectedFilter);
+    }
+
+    public void endScam(){
+        System.out.println("Press Enter to continue" );
+        scanner.nextLine();
+
     }
 }
