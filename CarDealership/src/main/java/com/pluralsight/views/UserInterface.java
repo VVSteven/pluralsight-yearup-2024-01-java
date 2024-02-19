@@ -50,9 +50,6 @@ public class UserInterface {
          return scanner.nextInt();
 
     }
-    public void displayFilter(String selectedFilter){
-        System.out.println("Cars by sorted by " + selectedFilter);
-    }
 
     public double getPriceRangeMin(){
         System.out.println("What minimum price are you looking for?");
@@ -70,6 +67,10 @@ public class UserInterface {
         System.out.println("========================");
         carServices.getRangedCars(dealershipID,minPrice,maxPrice);
         System.out.println("========================");
+    }
+    public String getMake(){
+
+        return
     }
 
     public void endScam(){

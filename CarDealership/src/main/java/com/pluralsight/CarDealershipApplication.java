@@ -59,7 +59,7 @@ public class CarDealershipApplication {
                 break;
             case 3:
                 selectedFilter = "Make/Model";
-                showFilterCars();
+                showCarsByMakeOrModel();
 
                 break;
             case 4:
@@ -102,6 +102,9 @@ public class CarDealershipApplication {
         double maxPrice = ui.getPriceRangeMax();
         ui.displayCarsByRange(dealershipID,minPrice,maxPrice);
         ui.endScam();
+    }
+    public void showCarsByMakeOrModel(){
+        
     }
     public void showFilterCars(){
 
